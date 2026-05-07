@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "fullName": "Sathishkumar R",
+      "email": "sathish@example.com",
+      "phone": "9876543210",
+      "city": "Coimbatore",
+      "password": "hashed_password_123",
+   
+      "joinDate": "2026-05-01"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "email": "admin@gymsystem.com",
+      "password": "123456",
+      "accessLevel": "super_admin"
+    }
+  ],
+  "workouts": [
+    {
+      "id": "w1",
+      "userId": "1",
+      "title": "Chest & Triceps",
+      "exercises": [
+        { "name": "Bench Press", "sets": 4, "reps": 12 },
+        { "name": "Tricep Pushdowns", "sets": 3, "reps": 15 }
+      ]
+    }
+  ],
+  "attendance": [
+    {
+      "id": "a1",
+      "userId": "1",
+      "date": "2026-05-07",
+      "status": "Present"
+    }
+  ]
+}
