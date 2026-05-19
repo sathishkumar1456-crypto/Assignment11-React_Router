@@ -1,41 +1,132 @@
 {
   "users": [
     {
-      "id": "1",
+      "fullName": "Sathishkumar RSK",
+      "email": "sathishrsk1994@gmail.com",
+      "phone": "07845550756",
+      "city": "coimbatore",
+      "password": "123456",
+      "joinDate": "2026-05-13",
+      "id": "kYDtuaAV8mE",
+      "planType": "Pro"
+    },
+    {
+      "fullName": "narashiman",
+      "email": "narashiman@gmail.com",
+      "phone": "4561230789",
+      "city": "chennai",
+      "password": "789456",
+      "joinDate": "2026-05-13",
+      "id": "EZgkrcBEmUI",
+      "planType": "Elite Pro"
+    },
+    {
       "fullName": "Sathishkumar R",
-      "email": "sathish@example.com",
-      "phone": "9876543210",
-      "city": "Coimbatore",
-      "password": "hashed_password_123",
-   
-      "joinDate": "2026-05-01"
+      "email": "sathishrsk994@gmail.com",
+      "phone": "07845550756",
+      "city": "coimbatore",
+      "password": "123456",
+      "joinDate": "2026-05-13",
+      "id": "SCzrx7xeXnw"
+    },
+    {
+      "fullName": "Sathishkumar R",
+      "email": "sathishrsk1994@gail.com",
+      "phone": "07845550756",
+      "city": "coimbatore",
+      "password": "789456",
+      "joinDate": "2026-05-13",
+      "id": "k1jkfGnoo2I"
+    },
+    {
+      "fullName": "anbu",
+      "email": "anbu@example.com",
+      "phone": "456123789",
+      "city": "coimbatore",
+      "password": "123456",
+      "joinDate": "2026-05-14",
+      "id": "oenap7EOBg8",
+      "planType": "Elite Pro"
+    },
+    {
+      "fullName": "deepak",
+      "email": "deepak@gmail.com",
+      "phone": "4561237890",
+      "city": "chennai",
+      "password": "123456",
+      "joinDate": "2026-05-19",
+      "id": "EEbzsVZ-NqI",
+      "planType": "Pro"
     }
   ],
   "admins": [
     {
       "id": "1",
-      "email": "admin@gymsystem.com",
+      "email": "Sathish@gymsystem.com",
       "password": "123456",
-      "accessLevel": "super_admin"
+      "accessLevel": "super_admin",
+      "profilePic": "https://media.licdn.com/dms/image/v2/D4E03AQFktXWqhsQG8A/profile-displayphoto-scale_400_400/B4EZjKsR5nHgAo-/0/1755747263635?e=1780531200&v=beta&t=No6gLqO1lL39_9eP82qScJNE0AJ80PV_6UAYdhyJQCM"
     }
   ],
-  "workouts": [
+  "plans": [
     {
-      "id": "w1",
-      "userId": "1",
-      "title": "Chest & Triceps",
-      "exercises": [
-        { "name": "Bench Press", "sets": 4, "reps": 12 },
-        { "name": "Tricep Pushdowns", "sets": 3, "reps": 15 }
-      ]
+      "id": "1",
+      "name": "Elite Pro",
+      "price": "99",
+      "duration": "1 Year",
+      "features": "All access, Personal Trainer"
+    },
+    {
+      "name": "Pro",
+      "price": "100",
+      "duration": "",
+      "type": "Monthly",
+      "id": "2q7r-bJoLoY"
+    },
+    {
+      "name": "Master",
+      "price": "125",
+      "duration": "",
+      "type": "Monthly",
+      "id": "AnRwxVfSCEQ"
     }
   ],
   "attendance": [
     {
-      "id": "a1",
-      "userId": "1",
-      "date": "2026-05-07",
-      "status": "Present"
+      "userId": "EZgkrcBEmUI",
+      "userName": "narashiman",
+      "date": "2026-05-14",
+      "time": "01:51",
+      "id": "cki2rub8mK4"
+    },
+    {
+      "userId": "oenap7EOBg8",
+      "userName": "anbu",
+      "date": "2026-05-14",
+      "time": "11:08",
+      "id": "YDtvlRS-CPs"
+    },
+    {
+      "userId": null,
+      "userName": "Sathishkumar R",
+      "date": "2026-04-30",
+      "time": "12:09",
+      "id": "2_MWuLqUEqQ"
+    },
+    {
+      "userId": null,
+      "userName": "Sathishkumar R",
+      "date": "2026-05-16",
+      "time": "11:16",
+      "id": "LHT-HYI_F8M"
+    },
+    {
+      "userId": "EEbzsVZ-NqI",
+      "userName": "deepak",
+      "date": "2026-05-19",
+      "time": "11:09",
+      "id": "j98ogo08fKQ"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

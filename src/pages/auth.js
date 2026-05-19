@@ -1,4 +1,4 @@
-// src/utils/auth.js
+
 
 export const loginUser = (userData) => {
   localStorage.setItem('gymUser', JSON.stringify(userData));

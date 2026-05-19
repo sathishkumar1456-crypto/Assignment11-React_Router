@@ -6,6 +6,7 @@ import Admin from './components/Admin';
 import Users from './components/Users';
 import NewUser from './pages/Newuser';
 import Userdashboard from './pages/Userdashboard';
+import AdminHome from './pages/AdminHome';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/newuser" element={<NewUser/>}/>
         <Route path ="/userdash" element={<Userdashboard/>}/>
+        <Route path="/admin-dashboard" element={<AdminHome />} />
                
       </Routes>
     </>

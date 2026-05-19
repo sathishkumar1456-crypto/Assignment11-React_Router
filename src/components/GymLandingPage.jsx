@@ -19,6 +19,7 @@ const GymLandingPage = () => {
         <div className="text-2xl font-black italic tracking-tighter uppercase">
           SATHISHRSK FIT<span className="text-orange-500">PULSE</span>
         </div>
+        
         <div className="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
           <a href="#home" className="hover:text-orange-500 transition-colors">Home</a>
           <a href="#features" className="hover:text-orange-500 transition-colors">Features</a>
@@ -37,7 +38,7 @@ const GymLandingPage = () => {
             The ultimate management platform for modern fitness hubs. 
             Track progress, manage members, and scale your gym.
           </p>
-          <div className="mt-10 flex flex-col md:flex-row justify-center gap-4">
+          <div className="mt-10 flex flex-col md:flex-row justify-center gap-4 ">
             <a href="/users" className="px-10 py-4 bg-orange-500 text-black font-black uppercase skew-x-[-10deg] hover:bg-white transition-all">
               Member Portal
             </a>
@@ -89,6 +90,7 @@ const GymLandingPage = () => {
           </div>
         </div>
       </section>
+      
 
       {/* Footer */}
       <footer className="py-12 border-t border-gray-900 text-center text-gray-500 text-sm">

@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Users = () => {
   const navigate = useNavigate();
+  // Check local storage on component mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem('gymUser');
+    if (savedUser) {
+      const userData = JSON.parse(savedUser);
+      if (userData.isLoggedIn) {
+        navigate('/userdash');
+      }
+    }
+  }, [navigate]);
+
   // State for form data
   const [formData, setFormData] = useState({
     email: '',
@@ -48,44 +59,41 @@ const Users = () => {
     e.preventDefault();
     
     if (validate()) {
-      try {
-        // 1. Call your Login API
-        const response = await fetch('http://localhost:5000/users', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+    try {
+      // 1. Fetch users from db.json to verify credentials
+      const response = await fetch('http://localhost:5000/users');
+      const users = await response.json();
 
-        const data = await response.json();
+      // 2. Find the user matching the email and password
+      const foundUser = users.find(
+        (u) => u.email === formData.email && u.password === formData.password
+      );
 
-        if (response.ok) {
-          // 2. STORE in Local Storage
-          // We stringify the object because localStorage only stores strings
-          localStorage.setItem('gymUser', JSON.stringify({
-            token: data.token, // If your API returns a JWT
-            user: data.user,   // User details like name, email, role
-            isLoggedIn: true
-          }));
+      if (foundUser) {
+        // 3. Clear errors and land to home by setting localStorage
+        setErrors({}); 
+        localStorage.setItem('gymUser', JSON.stringify({
+          user: foundUser,
+          isLoggedIn: true
+        }));
 
-          alert(`Welcome back, ${data.user.fullName}!`);
-          
-          // 3. NAVIGATE to the dashboard (using the navigate hook you already imported)
-          navigate('/userdash'); 
-        } else {
-          // Handle API errors (e.g., "Invalid credentials")
-          setErrors({ auth: data.message || "Login failed" });
-        }
-      } catch (error) {
-        console.error("Connection Error:", error);
-        alert("Server is down. Please try again later.");
+        alert(`Welcome back, ${foundUser.fullName}!`);
+        
+        // 4. Trigger navigation
+        navigate('/userdash'); 
+      } else {
+        // Handle failed login without creating a new entry
+        setErrors({ auth: "Invalid email or password" });
       }
+    } catch (error) {
+      console.error("Connection Error:", error);
+      alert("Server is down. Please try again later.");
     }
-  };
+  }
+};
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-zinc-950 p-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-blue-800 p-4">
       <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl">
         
         <div className="text-center mb-10">
@@ -136,6 +144,9 @@ const Users = () => {
         {/* Footer Link */}
            <p onClick={() => navigate('/newuser')} className="text-center text-gray-300 mt-4">
             Don't have an account? < span className="text-blue-400 cursor-pointer hover:underline font-semibold" >Join Now</span>
+          </p>
+          <p onClick={() => navigate('/')} className="text-center text-gray-300 mt-4">
+            Return to  < span className="text-blue-400 cursor-pointer hover:underline font-semibold" >Homepage</span>
           </p>
         </form>
       </div>

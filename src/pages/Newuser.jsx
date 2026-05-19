@@ -20,18 +20,30 @@ function NewUser() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // 3. Handle Submit to db.json
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic Validation
+    // 1. Basic Password Validation
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5173/users', {
+      // 2. FETCH all users to check for duplicates
+            const checkResponse = await fetch('http://localhost:5000/users');
+      const existingUsers = await checkResponse.json();
+
+      // 3. CHECK if email already exists
+      const isDuplicate = existingUsers.find(user => user.email === formData.email);
+      
+      if (isDuplicate) {
+        alert("This email is already registered! Please use a different email or login.");
+        return; // Stop the registration process
+      }
+
+      // 4. PROCEED to POST if no duplicate found
+      const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,8 +53,7 @@ function NewUser() {
           email: formData.email,
           phone: formData.phone,
           city: formData.city,
-          password: formData.password, // In real apps, hash this!
-          // role: 'member',
+          password: formData.password, 
           joinDate: new Date().toISOString().split('T')[0]
         }),
       });
@@ -50,11 +61,15 @@ function NewUser() {
       if (response.ok) {
         const result = await response.json();
         
-        // --- LOCAL STORAGE API ---
-        localStorage.setItem('gymUser', JSON.stringify(result));
+        // 5. CONNECT TO LOCAL STORAGE
+        // Store the newly created user so they are "logged in" automatically
+        localStorage.setItem('gymUser', JSON.stringify({
+          ...result,
+          isLoggedIn: true
+        }));
         
         alert("Registration Successful!");
-        navigate('/users'); // Redirect to login
+        navigate('/userdash'); // Navigate straight to dashboard
       } else {
         alert("Failed to register user.");
       }
@@ -65,9 +80,10 @@ function NewUser() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-zinc-950 p-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-blue-800 p-4">
       <div className="absolute top-20 left-20 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
+      
 
       <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
         <form onSubmit={handleSubmit}>
